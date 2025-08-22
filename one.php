@@ -1,2 +1,28 @@
-<?php
-echo "<h1>Hello this is my first php program </h1> <br> I don't know why I am getting red line error in VS Code...";
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>The XMLHttpRequest Object</h2>
+<h3>Start typing a name in the input field below:</h3>
+
+<p>Suggestions: <span id="txtHint"></span></p> 
+<p>First name: <input type="text" id="txt1" onkeyup="showHint(this.value)"></p>
+
+<script>
+function showHint(str) {
+  if (str.length == 0) { 
+    document.getElementById("txtHint").innerHTML = "";
+    return;
+  }
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    document.getElementById("txtHint").innerHTML =
+    this.responseText;
+  }
+  xhttp.open("GET", "gethint.php?q="+str);
+  xhttp.send();   
+}
+</script>
+
+</body>
+</html>
